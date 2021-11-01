@@ -1,0 +1,15 @@
+.row-infor {
+  border-bottom: 0.2rem solid #bdbebd;
+}
+
+.row {
+  padding: 1rem;
+}
+
+.col-7 {
+  text-align: left;
+}
+
+.col-sm {
+  text-align: center;
+}

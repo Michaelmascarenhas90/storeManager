@@ -4,7 +4,7 @@ import './header.css'
 
 
 
-function Header(props) {
+function Header({ client }) {
   // const oc = 1789
   return (
     <div className="container">
@@ -14,14 +14,14 @@ function Header(props) {
             <img
               src={logo}
               alt="imagem logo"
-              width="30"
-              height="24"
+              width="60"
               class="d-inline-block align-text-top"
             />
-            Grupo SA
           </a>
         </div>
-        <div className="col-sm"><span className='id-ordem-compra'>OC: {props.oc}</span></div>
+        <div className="col-6"><h2>Orçamento</h2></div>
+        <div className="col-sm"><span className='id-ordem-compra'>OC: { client.oc.id }</span></div>
+        <div className="col-sm"><span className='id-ordem-compra'>Data: { client.data }</span></div>
       </nav>
     </div>
   );

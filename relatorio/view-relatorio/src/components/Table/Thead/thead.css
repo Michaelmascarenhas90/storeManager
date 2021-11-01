@@ -1,0 +1,11 @@
+thead {
+  border: 1px solid black;
+}
+
+thead th {
+  border-right: 1px solid black;
+}
+
+.head {
+  text-align: center;
+}
