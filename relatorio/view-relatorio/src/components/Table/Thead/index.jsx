@@ -6,11 +6,11 @@ const Thead = () => {
     <thead>
       <tr className="row head">
         <th className="col-4">Produto</th>
-        <th className="col-1">Qtd</th>
-        <th className="col-1">Unitário</th>
-        <th className="col-1">Total</th>
-        <th className="col-1">IPI</th>
-        <th className="col-4">Observação</th>
+        <th className="col">Qtd</th>
+        <th className="col">Unitário</th>
+        <th className="col">Total</th>
+        <th className="col">IPI</th>
+        <th className="col-3">Observação</th>
       </tr>
     </thead>
   );

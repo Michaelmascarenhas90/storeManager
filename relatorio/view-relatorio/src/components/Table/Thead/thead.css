@@ -2,10 +2,12 @@ thead {
   border: 1px solid black;
 }
 
-thead th {
+thead td {
   border-right: 1px solid black;
+  font-size: small;
 }
 
 .head {
   text-align: center;
+  font-size: small;
 }

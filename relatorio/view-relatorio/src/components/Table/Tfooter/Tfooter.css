@@ -2,7 +2,6 @@ tbody {
   border: 1px solid black;
 }
 
-tbody td {
+tbody th {
   border-right: 1px solid black;
-  font-size: small;
 }
