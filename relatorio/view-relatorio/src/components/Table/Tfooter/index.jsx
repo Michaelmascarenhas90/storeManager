@@ -29,15 +29,15 @@ const valorTotal = ({ produtos }) => {
   const totalyWithIpi = valoresIpi.reduce((totaly, value) => totaly + value, 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
   return(
-    <div>
+    <div className="container">
       <tbody className="tbody">
         <tr className="row">
-          <td className="col">Subtotal:</td>
+          <td className="col-3 col-md-auto">Subtotal:</td>
           <td className="col">{ valorTotal }</td>
         </tr>
         <tr className="row">
-          <td className="col">Total</td>
-          <td className="col">{totalyWithIpi}</td>
+          <td className="col-3 col-md-auto">Total</td>
+          <td className="col"><strong>{totalyWithIpi}</strong></td>
         </tr>
       </tbody>
     </div>

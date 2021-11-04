@@ -20,8 +20,8 @@ function Header({ client }) {
           </a>
         </div>
         <div className="col-6"><h2>Orçamento</h2></div>
-        <div className="col-sm"><span className='id-ordem-compra'>OC: { client.oc.id }</span></div>
-        <div className="col-sm"><span className='id-ordem-compra'>Data: { client.data }</span></div>
+        <div className="col col-lg-2"><span className='id-ordem-compra'>OC: { client.oc.id }</span></div>
+        <div className="col col-lg-2"><span className='id-ordem-compra'>Data: { client.data }</span></div>
       </nav>
     </div>
   );
