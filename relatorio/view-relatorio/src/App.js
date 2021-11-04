@@ -33,11 +33,11 @@ function App() {
     data: dataAtual.toLocaleDateString(),
   };
   return (
-    <main>
-      <Header client={cliente} />
-      <Main client={cliente} />
-      <Tfooter produtos={cliente.oc.produtos} />
-    </main>
+      <main>
+        <Header client={cliente} />
+        <Main client={cliente} />
+        <Tfooter produtos={cliente.oc.produtos} />
+      </main>
   );
 }
 
