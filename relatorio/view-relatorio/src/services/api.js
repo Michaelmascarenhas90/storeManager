@@ -1,18 +1,29 @@
-import axios from "axios";
+import axios from 'axios';
 
-const api = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+//tentativa 3
 
-api.interceptors.request.use(
-  (config) => {
-    if (localStorage.getItem("user-grupo-sa")) {
-      const token = JSON.parse(localStorage.getItem("user-grupo-sa")).token;
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (err) => {
-    return Promise.reject(err);
-  }
-);
+// function showResponse(res){
+//   return JSON.stringify(res.data,null,'\t')
+// }
 
-export default api;
+// export default function get(orderId) {
+//   axios
+//     .get(`http://localhost:3001/order/${orderId}`)
+//     .then(res => showResponse(res));
+// }
+
+//tentativa 2
+export const api = axios.create({
+  baseURL: `http://localhost:3001/order/`,
+});
+
+// export default api;
+
+
+//tentativa 1
+// export const api = async (orderId) => {
+//   let response = await fetch (`http://localhost:3001/order/${orderId}`);
+//   let orderData = await response.json();
+
+//   return orderData;
+// }

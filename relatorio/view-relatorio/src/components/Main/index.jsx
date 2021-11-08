@@ -11,14 +11,14 @@ const Main = ({ client }) => {
   return (
     <main className="container" >
       <div class="row row-infor">
-        <div className="col-7"><span className='info-user'><strong>Nome:</strong> { client.nome }</span></div>
-        <div className="col-sm"><span className='info-user'><strong>CPF/CNPJ:</strong> { client.CNPJ }</span></div>
+        <div className="col-5"><span className='info-user'><strong>Nome:</strong> { client.nome }</span></div>
+        <div className="col"><span className='info-user'><strong>CPF/CNPJ:</strong> { client.CNPJ }</span></div>
       </div>
       <div class="row row-infor">
-        <div className="col-3"><span className='info-user'><strong>Endereço:</strong> { client.endereco.rua }, {client.endereco.numero}</span></div>
-        <div className="col-sm"><span className='info-user'><strong>Bairro:</strong> { client.endereco.bairro }</span></div>
-        <div className="col-sm"><span className='info-user'><strong>Cidade:</strong> { client.endereco.cidade }</span></div>
-        <div className="col-sm"><span className='info-user'><strong>Estado:</strong> { client.endereco.estado }</span></div>
+        <div className="col-"><span className='info-user'><strong>Endereço:</strong> { client.endereco.rua }, {client.endereco.numero}</span></div>
+        <div className="col"><span className='info-user'><strong>Bairro:</strong> { client.endereco.bairro }</span></div>
+        <div className="col"><span className='info-user'><strong>Cidade:</strong> { client.endereco.cidade }</span></div>
+        <div className="col"><span className='info-user'><strong>Estado:</strong> { client.endereco.estado }</span></div>
       </div>
       <div className="row">
         <div className="col-4"><span className='info-user'><strong>Representante:</strong> { client.representante }</span></div>

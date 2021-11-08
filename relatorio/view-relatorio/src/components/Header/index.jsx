@@ -4,7 +4,7 @@ import './header.css'
 
 
 
-function Header({ client }) {
+function Header({ client, order }) {
   // const oc = 1789
   return (
     <div className="container">
@@ -20,7 +20,7 @@ function Header({ client }) {
           </a>
         </div>
         <div className="col-6"><h2>Orçamento</h2></div>
-        <div className="col col-lg-2"><span className='id-ordem-compra'>OC: { client.oc.id }</span></div>
+        <div className="col col-lg-2"><span className='id-ordem-compra'>OC: { order.Id }</span></div>
         <div className="col col-lg-2"><span className='id-ordem-compra'>Data: { client.data }</span></div>
       </nav>
     </div>

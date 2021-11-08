@@ -33,11 +33,11 @@ const valorTotal = ({ produtos }) => {
       <tbody className="tbody">
         <tr className="row">
           <td className="col-3 col-md-auto">Subtotal:</td>
-          <td className="col">{ valorTotal }</td>
+          <td className="col align-items-end">{ valorTotal }</td>
         </tr>
         <tr className="row">
           <td className="col-3 col-md-auto">Total</td>
-          <td className="col"><strong>{totalyWithIpi}</strong></td>
+          <td className="col align-items-end"><strong>{totalyWithIpi}</strong></td>
         </tr>
       </tbody>
     </div>
