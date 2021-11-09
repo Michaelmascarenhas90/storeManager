@@ -1,9 +1,11 @@
 .row-infor {
   border-bottom: 0.2rem solid #bdbebd;
+
 }
 
 .row {
   padding: 1rem;
+  font-size: 0.9rem;
 }
 
 .col-7 {

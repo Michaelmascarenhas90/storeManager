@@ -14,11 +14,10 @@ import axios from 'axios';
 
 //tentativa 2
 export const api = axios.create({
-  baseURL: `http://localhost:3001/order/`,
+  baseURL: `http://localhost:3001/`,
 });
 
 // export default api;
-
 
 //tentativa 1
 // export const api = async (orderId) => {

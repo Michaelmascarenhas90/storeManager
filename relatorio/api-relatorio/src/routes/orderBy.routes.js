@@ -1,16 +1,17 @@
 import { Router } from 'express';
 
-import { getOrder, getOrderById, getFrete, condPagto } from '../controllers/orderBy.controller'
+import {
+  getOrder,
+  getOrderById,
+  getByFreteId,
+} from '../controllers/orderBy.controller'
 
 const router = Router();
-
 
 router.get('/order', getOrder);
 
 router.get('/order/:id', getOrderById);
 
-router.get('/frete', getFrete);
-
-router.get('/condpag', condPagto);
+router.get('/frete', getByFreteId);
 
 export default router;

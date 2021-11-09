@@ -4,7 +4,7 @@ import './header.css'
 
 
 
-function Header({ client, order }) {
+function Header({ order, client }) {
   // const oc = 1789
   return (
     <div className="container">

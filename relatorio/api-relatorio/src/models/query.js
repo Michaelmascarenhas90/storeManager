@@ -1,8 +1,6 @@
 
-
 export const querys =  {
   getAllOrders: 'SELECT * FROM Pedidos',
-  getById: 'select * from Pedidos where id = @Id',
-  getTypeFrete: 'select * from Fretes',
-  getCondPagto: 'select * from vw_Condicoes_Pagtos',
+  getById: 'select * from Pedidos where Id = @Id',
+  getFretes: 'select * from Fretes',
 }

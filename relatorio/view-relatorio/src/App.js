@@ -12,15 +12,15 @@ import './App.css';
 function App() {
 
   const [order, setOrder] = useState([]);
-  const [freteOrder, setFreteOrder] = useState([]);
-  const [condPag, setCondPag] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
   // dados da OC
+
+  const numOrderCompra = 8993;
   useEffect(() => {
     axios
-      .get('http://localhost:3001/order/8993')
+      .get(`http://localhost:3001/order/${numOrderCompra.toString()}`)
       .then(response => {
         setOrder(response.data)
         setIsLoading(false);
@@ -31,45 +31,32 @@ function App() {
       })
   }, []);
 
+  const [freteOrder, setFreteOrder] = useState([]);
   // tipo de frete
+    // const idFrete = ((order.CdFrete).toString());
   useEffect(() => {
     axios
       .get('http://localhost:3001/frete')
       .then(response => {
-        setFreteOrder(response.data);
-        return setIsLoading(false);
+        // console.log(response)
+        setFreteOrder(response.data)
+        setIsLoading(false);
       })
-      .catch((error => 
-        {
-          setError(error.message);
-          return setIsLoading(false);
-        }
-      ))
+      .catch(error => {
+        setError(error.message);
+        setIsLoading(false);
+      })
   })
 
-  // condição pagamento
-  useEffect(() => {
-    axios
-      .get('http://localhost:3001/condpag')
-      .then(response => {
-        setCondPag(response.data);
-        return setIsLoading(false)
-      })
-      .catch((error) => { setError(error.message)})
-  }, []);
- 
   const freteMap = freteOrder.map((frete, i) => {
-    const returnFilter = (order.CdFrete === frete.CdFrete) ? frete.Descricao : null;
+     const freteFilter = frete.CdFrete === order.CdFrete ? frete.Descricao : null;
+     const filtered = freteFilter.toString();
 
-    return returnFilter;
+     return filtered;
   })
+  
 
-  const condPagMap = condPag.map((condicao) => {
-    const content = (order.cdCondPagto === condicao.cdCondPagto) ? condicao.Descricao:null;
-
-    return content;
-  })
-
+  
   if (isLoading) {
     return <h1>Buscando dados</h1>
   }
@@ -81,39 +68,40 @@ function App() {
 
   // const cliente = {
   //   oc: {
-  //     id: {order.Id},
-  //     frete: {freteMap},
-  //     vendedor: {order.idVendedor},
-  //     vlr_total: {order.totalPedido}
-  //     f_pagamento: {order.codFormaPagto},
+  //     id: order.Id,
+  //     frete: freteMap,
+  //     vendedor: order.idVendedor,
+  //     vlr_total: order.totalPedido,
+  //     f_pagamento: order.codFormaPagto,
   //     produtos: [
   //       {item: 'Testeira  c/ iluminação farmacia cb300 branco azulado', qtd: 6, vlr_unit: 700, alq_imposto: 7, obs: "Observação 1 verificando se esta renderizando corretamente" },
   //       {item: 'Armação de metal medida 30x40, aplicado em porta palete', qtd: 2, vlr_unit: 130, alq_imposto: 7, obs: "Observação 2 verficando se esta renderizando corretamente" },
   //     ],
   //   },
-  //   nome: {order.nmCliente},
-  //   CNPJ: {order.nmCliente.replace(/[^0-9]/g,'')},
+  //   nome: order.nmCliente,
+  //   CNPJ: order.nmCliente.replace(/[^0-9]/g,''),
   //   endereco: {
   //     rua: 'Av afonso Vaz de Melo',
   //     numero: 51,
   //     bairro: 'Industrial',
   //     cidade: 'Contagem',
-  //     estado: 'MG'
+  //     estado: 'MG',
   //   },
-  //   representante: {order.CdRepresentante},
-  //   vendedor: 'Igor Augusto dos Santos',
+  //   representante: order.CdRepresentante,
+  //   vendedor: vendedores.Nome,
   //   // data atual
   //   data: dataAtual.toLocaleDateString(),
   // };
   return (
       <main>
-        {/* <Header client={cliente} order={order} />
-        <Main client={cliente} />
-        <Tfooter produtos={cliente.oc.produtos} /> */}
+        {/* <Header order={order} client={cliente} />
+        <Main order={order} client={cliente} />
+        <Tfooter produtos={cliente.oc.produtos} vlr_total={order.totalPedido} /> */}
         <h2>{order.Id}</h2>
+        <span>{order.nmCliente}</span>
         <h3>{order.nmCliente.replace(/[^0-9]/g,'')}</h3>
         <h3>{freteMap}</h3>
-        <h4>{condPagMap}</h4>
+        {/* <h4>{fretes}</h4> */}
       </main>
   );
 }
