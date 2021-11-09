@@ -33,3 +33,12 @@ export const getByFreteId = async (_req, res) => {
     res.send(error.message);
   }
 }
+
+export const getByTest = async(req, res) => {
+  const { id } = req.params;
+
+  const pool = await getConnection();
+  const result = await pool.request().input('id', id).query(querys.getTest);
+
+  res.send(result.recordset[0]);
+}
