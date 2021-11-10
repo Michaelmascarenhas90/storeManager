@@ -37,7 +37,7 @@ const valorTotal = ({ produtos, vlr_total }) => {
         </tr>
         <tr className="row">
           <td className="col-3 col-md-auto">Total</td>
-          <td className="col align-items-end"><strong>{ vlr_total }</strong></td>
+          <td className="col align-items-end"><strong>{ vlr_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }</strong></td>
         </tr>
       </tbody>
     </div>

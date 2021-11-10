@@ -26,7 +26,7 @@ const Main = ({ order, client }) => {
         <div className="col-5"><span className='info-user'><strong>Vendedor:</strong> { client.vendedor }</span></div>
       </div>
       <div className="row row-infor">
-        <div className="col"><span className='info-user'><strong>F.Pagamento:</strong> { order.cdCondPagto }</span></div>
+        <div className="col"><span className='info-user'><strong>F.Pagamento:</strong> { client.oc.f_pagamento }</span></div>
       </div>
       <div className="row row-infor"><Table produtos={ client.oc.produtos }/></div>
     </main>
