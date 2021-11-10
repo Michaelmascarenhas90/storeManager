@@ -38,7 +38,15 @@ function App() {
 
   //itens do pedido
   const [products, setProducts] = useState([]);
-  const [prodLimpo, setProdLimpo] = useState([])
+  const [prodLimpo, setProdLimpo] = useState([{
+    nome: '',
+    qtd: 0,
+    vlr_unit: 0,
+    total: 0,
+    ipi: 0,
+    obs: '',
+
+  }])
   
   useEffect(() => {
     axios
@@ -53,15 +61,24 @@ function App() {
       })
   }, []);
 
+//   setFilters({
+//     ...filters, filterByName: { name: value },
+//   });
+// };
+
   
   useEffect(() => {
     // console.log(products)
-    const listProducts = products.map(produto => produto)
-    setProdLimpo(listProducts)
-    // console.log(listProducts)
+    const listProducts = products.map((produto) => {
+      setProdLimpo({...prodLimpo, nome: produto.dsProduto})
+      setProdLimpo({...prodLimpo, qtd: produto.QtdeSag })
+      setProdLimpo({...prodLimpo, vlr_unit: produto.Preco})
+      setProdLimpo({...prodLimpo, total: produto.Total })
+    })
+
   }, [products])
 
-  console.log(prodLimpo)
+  // console.log(prodLimpo)
   
 
    useEffect(() => {
@@ -129,11 +146,6 @@ function App() {
        vlr_total: order.totalPedido,
       f_pagamento: condPag.Descricao,
       produtos: [
-        prodLimpo.map((prod) => {
-          return (
-            { nome: prod.dsProduto, }
-          )
-        })
         {item: 'Testeira  c/ iluminação farmacia cb300 branco azulado', qtd: 6, vlr_unit: 700, alq_imposto: 7, obs: "Observação 1 verificando se esta renderizando corretamente" },
         {item: 'Armação de metal medida 30x40, aplicado em porta palete', qtd: 2, vlr_unit: 130, alq_imposto: 7, obs: "Observação 2 verficando se esta renderizando corretamente" },
       ],
@@ -156,7 +168,7 @@ function App() {
       <main>
         <Header order={order} client={cliente} />
         <Main order={order} client={cliente} />
-        <Tfooter produtos={cliente.oc.produtos} vlr_total={order.totalPedido} />
+        <Tfooter produtos={prodLimpo} vlr_total={order.totalPedido} />
       </main>
   );
 }
