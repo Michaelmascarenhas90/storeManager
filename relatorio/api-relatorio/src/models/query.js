@@ -3,6 +3,7 @@ export const querys =  {
   getAllOrders: 'SELECT * FROM Pedidos',
   getById: 'select * from Pedidos where Id = @Id',
   getFretes: 'select * from Fretes',
+  getFreteById: 'select * from Fretes where CdFrete = @Id',
   getVendedoresById: 'select Nome from Usuarios where Id = @Id',
   getCondPagByID: 'select Descricao from vw_Condicoes_Pagtos where CdCondPagto = @Id',
   getIpiList: 'select * from View_ipi',

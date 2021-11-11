@@ -22,7 +22,7 @@ export const getOrderById = async (req, res) => {
   res.send(result.recordset[0]);
 };
 
-export const getByFreteId = async (_req, res) => {
+export const getByFrete = async (_req, res) => {
   try {
     const pool = await getConnection();
     const result = await pool.request().query(querys.getFretes);
@@ -32,6 +32,15 @@ export const getByFreteId = async (_req, res) => {
     res.status(500);
     res.send(error.message);
   }
+}
+
+export const getFreteById = async (req, res) => {
+  const {id} = req.params;
+
+  const pool = await getConnection();
+  const result = await pool.request().input('Id', id).query(querys.getFreteById);
+  // console.log(result);
+  res.send(result.recordset[0]);
 }
 
 export const getByVendedores = async (req, res) => {

@@ -7,15 +7,15 @@ const Main = ({ order, client, prod, addre }) => {
   // const cond_pagamento = client.oc.f_pagamento.map((prazo, i) => {
   //   return <span key={i}>{prazo}, </span>
   // })
-
-
+  
   return (
     <main className="container" >
-      <div class="row row-infor">
+      <div className="row row-infor">
         <div className="col-7"><span className='info-user'><strong>Nome:</strong> { order.nmCliente }</span></div>
+        {/* {console.log(addre.A1_END)} */}
         <div className="col"><span className='info-user'><strong>CPF/CNPJ:</strong> { order.nmCliente.replace(/[^0-9]/g,'') }</span></div>
       </div>
-      <div class="row row-infor">
+      <div className="row row-infor">
         <div className="col-"><span className='info-user'><strong>Endereço:</strong> { client.endereco.rua }, {client.endereco.numero}</span></div>
         <div className="col"><span className='info-user'><strong>Bairro:</strong> { client.endereco.bairro }</span></div>
         <div className="col"><span className='info-user'><strong>Cidade:</strong> { client.endereco.cidade }</span></div>

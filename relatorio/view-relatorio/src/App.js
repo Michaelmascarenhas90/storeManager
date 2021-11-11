@@ -26,22 +26,6 @@ function App() {
   // informações do pedido
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/address/${order.CdCliente}`)
-      .then(response => response.data)
-      .then(responseData => {
-        setAddress(responseData)
-        setIsLoading(false)
-      })
-      .catch(error => {
-        setError(error.message);
-        setIsLoading(false);
-      })
-  }, [order.CdCliente]);
-
-  console.log(address)
-
-  useEffect(() => {
-    axios
       .get(`http://localhost:3001/order/${numOrderCompra.toString()}`)
       .then(response => response.data)
       .then(responseData => {
@@ -54,6 +38,23 @@ function App() {
         setIsLoading(false);
       })
   },[]);
+
+  // dados do endereço
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/address/${order.CdCliente}`)
+      .then(response => response.data)
+      .then(responseData => {
+        // console.log(responseData[0])
+        setAddress(responseData)
+        setIsLoading(false)
+      })
+      .catch(error => {
+        setError(error.message);
+        setIsLoading(false);
+      })
+  }, [order.CdCliente]);
+   // console.log(address[0])
 
   //itens do pedido  
   useEffect(() => {
@@ -71,17 +72,18 @@ function App() {
 
    useEffect(() => {
     axios
-      .get('http://localhost:3001/frete')
+      .get(`http://localhost:3001/frete/${order.CdFrete}`)
       .then(response => {
         // console.log(response)
-        setFreteOrder(response.data);
+        setFreteOrder(response.data.Descricao);
+        // console.log(response.data.Descricao)
         setIsLoading(false);
       })
       .catch(error => {
         setError(error.message);
         setIsLoading(false);
       })
-  }, [order]);
+  }, [order.CdFrete]);
 
   useEffect(() => {  
     axios.get(`http://localhost:3001/vendedor/${order.idVendedor}`)
@@ -111,12 +113,12 @@ function App() {
     })
   }, [order.cdCondPagto]);
 
-  const freteMap = freteOrder.map((frete, i) => {
-    const freteFilter = frete.CdFrete === order.CdFrete ? <span key={i}>{frete.Descricao}</span> : null;
-    const filtered = freteFilter;
+  // const freteMap = freteOrder.map((frete, i) => {
+  //   const freteFilter = frete.CdFrete === order.CdFrete ? <span key={i}>{frete.Descricao}</span> : null;
+  //   const filtered = freteFilter;
   
-    return filtered;
-  })
+  //   return filtered;
+  // })
 
   if (isLoading) {
     return <h1>Buscando dados</h1>
@@ -128,7 +130,7 @@ function App() {
     const cliente = {
       oc: {
         id: order.Id,
-        frete: freteMap,
+        frete: freteOrder,
         vlr_total: order.totalPedido,
         f_pagamento: condPag.Descricao,
         produtos: [
@@ -153,9 +155,20 @@ function App() {
 
   return (
       <main>
-        <Header order={order} client={cliente} />
-        <Main order={order} client={cliente} prod={products} addre={address} />
-        <Tfooter produtos={products} vlr_total={order.totalPedido} />
+        <Header
+          order={order}
+          client={cliente}
+        />
+        <Main 
+          order={order}
+          client={cliente}
+          prod={products}
+          addre={address[0]}
+        />
+        <Tfooter
+          produtos={products}
+          vlr_total={order.totalPedido}
+        />
       </main>
   );
 }

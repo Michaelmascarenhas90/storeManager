@@ -8,14 +8,14 @@ function Header({ order, client }) {
   // const oc = 1789
   return (
     <div className="container">
-      <nav class="navbar navbar-dark bg-primary row">
-        <div class="container-fluid col-sm">
-          <a class="navbar-brand" href="https://www.sagrupo.com/">
+      <nav className="navbar navbar-dark bg-primary row">
+        <div className="container-fluid col-sm">
+          <a className="navbar-brand" href="https://www.sagrupo.com/">
             <img
               src={logo}
               alt="imagem logo"
               width="60"
-              class="d-inline-block align-text-top"
+              className="d-inline-block align-text-top"
             />
           </a>
         </div>

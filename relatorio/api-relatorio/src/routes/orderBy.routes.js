@@ -3,7 +3,8 @@ import { Router } from 'express';
 import {
   getOrder,
   getOrderById,
-  getByFreteId,
+  getByFrete,
+  getFreteById,
   getByVendedores,
   getByCondicao,
   getIpi,
@@ -17,7 +18,8 @@ router.get('/order', getOrder);
 
 router.get('/order/:id', getOrderById);
 
-router.get('/frete', getByFreteId);
+router.get('/frete', getByFrete);
+router.get('/frete/:id', getFreteById)
 
 // router.get('/teste/:id', getByTest);
 
