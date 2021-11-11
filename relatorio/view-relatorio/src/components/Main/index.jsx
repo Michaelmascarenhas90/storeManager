@@ -2,7 +2,7 @@ import React from "react";
 import Table from "../Table";
 import "./main.css";
 
-const Main = ({ order, client }) => {
+const Main = ({ order, client, prod }) => {
 
   // const cond_pagamento = client.oc.f_pagamento.map((prazo, i) => {
   //   return <span key={i}>{prazo}, </span>
@@ -28,7 +28,7 @@ const Main = ({ order, client }) => {
       <div className="row row-infor">
         <div className="col"><span className='info-user'><strong>F.Pagamento:</strong> { client.oc.f_pagamento }</span></div>
       </div>
-      <div className="row row-infor"><Table produtos={ client.oc.produtos }/></div>
+      <div className="row row-infor"><Table prod={ prod } produtos={ client.oc.produtos }/></div>
     </main>
   );
 }
