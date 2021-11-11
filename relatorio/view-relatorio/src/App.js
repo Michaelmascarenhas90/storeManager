@@ -13,6 +13,7 @@ function App() {
 
   const [order, setOrder] = useState([]);
   const [freteOrder, setFreteOrder] = useState([]);
+  const [products, setProducts] = useState([]);
   const [vendedor, setVendedor] = useState('')
   const [condPag, setCondPag] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -36,18 +37,7 @@ function App() {
       })
   }, []);
 
-  //itens do pedido
-  const [products, setProducts] = useState([]);
-  const [prodLimpo, setProdLimpo] = useState([{
-    nome: '',
-    qtd: 0,
-    vlr_unit: 0,
-    total: 0,
-    ipi: 0,
-    obs: '',
-
-  }])
-  
+  //itens do pedido  
   useEffect(() => {
     axios
       .get(`http://localhost:3001/productsbypedido/${numOrderCompra}`)
@@ -65,21 +55,6 @@ function App() {
 //     ...filters, filterByName: { name: value },
 //   });
 // };
-
-  
-  useEffect(() => {
-    // console.log(products)
-    const listProducts = products.map((produto) => {
-      setProdLimpo({...prodLimpo, nome: produto.dsProduto})
-      setProdLimpo({...prodLimpo, qtd: produto.QtdeSag })
-      setProdLimpo({...prodLimpo, vlr_unit: produto.Preco})
-      setProdLimpo({...prodLimpo, total: produto.Total })
-    })
-
-  }, [products])
-
-  // console.log(prodLimpo)
-  
 
    useEffect(() => {
     axios
@@ -167,8 +142,8 @@ function App() {
   return (
       <main>
         <Header order={order} client={cliente} />
-        <Main order={order} client={cliente} />
-        <Tfooter produtos={prodLimpo} vlr_total={order.totalPedido} />
+        <Main order={order} client={cliente} prod={products} />
+        <Tfooter produtos={products} vlr_total={order.totalPedido} />
       </main>
   );
 }
