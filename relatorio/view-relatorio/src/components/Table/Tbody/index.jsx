@@ -1,20 +1,20 @@
 import React from "react";
 import "./tbody.css";
 
-const Tbody = ({ produtos, prod }) => {
+const Tbody = ({ prod }) => {
 
   // const total = produtos.reduce((total, valor) => { return total + valor, 0 });
 
   return (
     <div>
       <thead>
-        <tr className="row row-test head">
+        <tr className="row head">
           <th className="col-4">Produto</th>
-          <th className="col-1">Qtd</th>
-          <th className="col">Unitário</th>
-          <th className="col">Total</th>
-          <th className="col">IPI</th>
-          <th className="col-3">Observação</th>
+          <th className="col-1 head">Qtd</th>
+          <th className="col head">Unitário</th>
+          <th className="col head">Total</th>
+          <th className="col head">IPI</th>
+          <th className="col">Observação</th>
         </tr>
       </thead>
       <tbody className="tbody">
@@ -25,17 +25,16 @@ const Tbody = ({ produtos, prod }) => {
             const vlr_total = (vlr_unit * qtd_total)//.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
             const imposto = ((vlr_total * 5) / 100);
 
-            
             return (
               <div>
                 <div>
-                  <tr key={i} className="row row-test">
+                  <tr className="row" key={i}>
                     <td className="col-4">{produto.dsProduto}</td>
                     <td className="col-1 head">{qtd_total}</td>
                     <td className="col head">{vlr_unit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
                     <td className="col head">{vlr_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
                     <td className="col head">{imposto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
-                    <td className="col-3 head">{produto.Observacao}</td>
+                    <td className="col">{produto.Observacao}</td>
                   </tr>
                 </div>
               </div>

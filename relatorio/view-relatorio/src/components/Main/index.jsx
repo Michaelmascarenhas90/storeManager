@@ -29,7 +29,7 @@ const Main = ({ order, client, prod, addre }) => {
       <div className="row row-infor">
         <div className="col"><span className='info-user'><strong>F.Pagamento:</strong> { client.oc.f_pagamento }</span></div>
       </div>
-      <div className="row row-infor"><Table prod={ prod } produtos={ client.oc.produtos }/></div>
+      <div className="row row-infor"><Table prod={ prod } obs={order.Observacao} /></div>
     </main>
   );
 }

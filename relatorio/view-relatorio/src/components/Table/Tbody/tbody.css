@@ -1,26 +1,24 @@
-tbody {
+
+
+/*tbody {
   border: 1px solid black;
-}
+}*/
 
 tbody td {
   border-right: 1px solid black;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 thead {
   border: 1px solid black;
 }
 
-thead td {
-  border-right: 1px solid black;
+thead th {
+  border-right: 0.4px solid black;
   font-size: small;
 }
 
 .head {
   text-align: center;
   font-size: small;
-}
-
-.row-test {
-  padding: 0.2rem;
 }

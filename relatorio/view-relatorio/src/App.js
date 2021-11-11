@@ -21,27 +21,31 @@ function App() {
   const [error, setError] = useState('');
 
   // dados da OC
-  const numOrderCompra = 8993;
+  const numOrderCompra = 899;
 
   // informações do pedido
   useEffect(() => {
     axios
       .get(`http://localhost:3001/address/${order.CdCliente}`)
-      .then(response => {
-        setAddress(response.data)
-        setIsLoading(false);
+      .then(response => response.data)
+      .then(responseData => {
+        setAddress(responseData)
+        setIsLoading(false)
       })
       .catch(error => {
         setError(error.message);
         setIsLoading(false);
       })
-  }, [order])
+  }, [order.CdCliente]);
+
+  console.log(address)
 
   useEffect(() => {
     axios
       .get(`http://localhost:3001/order/${numOrderCompra.toString()}`)
-      .then(response => {
-        setOrder(response.data)
+      .then(response => response.data)
+      .then(responseData => {
+        setOrder(responseData)
         // console.log(response.data)
         setIsLoading(false);
       })
@@ -90,7 +94,7 @@ function App() {
       setIsLoading(false)
 
     })
-  },[order.idVendedor])
+  },[order.idVendedor]);
 
   useEffect(() => {  
     axios.get(`http://localhost:3001/condicao/${order.cdCondPagto}`)
@@ -105,10 +109,10 @@ function App() {
       setIsLoading(false)
 
     })
-  },[order.cdCondPagto])
+  }, [order.cdCondPagto]);
 
   const freteMap = freteOrder.map((frete, i) => {
-    const freteFilter = frete.CdFrete === order.CdFrete ? <span>{frete.Descricao}</span> : null;
+    const freteFilter = frete.CdFrete === order.CdFrete ? <span key={i}>{frete.Descricao}</span> : null;
     const filtered = freteFilter;
   
     return filtered;
@@ -120,34 +124,32 @@ function App() {
   if (error){
     return <h1>Problemas idenficados: { error }</h1>
   }
-  // console.log(address)
-  const dataAtual = new Date();
 
-  const cliente = {
-    oc: {
-      id: order.Id,
-      frete: freteMap,
-       vlr_total: order.totalPedido,
-      f_pagamento: condPag.Descricao,
-      produtos: [
-        {item: 'Testeira  c/ iluminação farmacia cb300 branco azulado', qtd: 6, vlr_unit: 700, alq_imposto: 7, obs: "Observação 1 verificando se esta renderizando corretamente" },
-        {item: 'Armação de metal medida 30x40, aplicado em porta palete', qtd: 2, vlr_unit: 130, alq_imposto: 7, obs: "Observação 2 verficando se esta renderizando corretamente" },
-      ],
-    },
-    nome: order.nmCliente,
-    CNPJ: order.nmCliente.replace(/[^0-9]/g,''),
-    endereco: {
-      rua: address.A1_END,
-      numero: 51,
-      bairro: 'Industrial',
-      cidade: 'Contagem',
-      estado: 'MG',
-    },
-    representante: order.CdRepresentante,
-    vendedor: vendedor,
-    // data atual
-    data: dataAtual.toLocaleDateString(),
-  };
+    const cliente = {
+      oc: {
+        id: order.Id,
+        frete: freteMap,
+        vlr_total: order.totalPedido,
+        f_pagamento: condPag.Descricao,
+        produtos: [
+          {item: 'Testeira  c/ iluminação farmacia cb300 branco azulado', qtd: 6, vlr_unit: 700, alq_imposto: 7, obs: "Observação 1 verificando se esta renderizando corretamente" },
+          {item: 'Armação de metal medida 30x40, aplicado em porta palete', qtd: 2, vlr_unit: 130, alq_imposto: 7, obs: "Observação 2 verficando se esta renderizando corretamente" },
+        ],
+      },
+      nome: order.nmCliente,
+      CNPJ: order.nmCliente.replace(/[^0-9]/g,''),
+      endereco: {
+        rua: "teste",
+        numero: 51,
+        bairro: 'Industrial',
+        cidade: 'Contagem',
+        estado: 'MG',
+      },
+      representante: order.CdRepresentante,
+      vendedor: vendedor,
+      // data atual
+      data: new Date().toLocaleDateString(),
+    };
 
   return (
       <main>
