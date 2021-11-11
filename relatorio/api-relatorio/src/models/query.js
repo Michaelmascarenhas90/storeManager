@@ -6,5 +6,6 @@ export const querys =  {
   getVendedoresById: 'select Nome from Usuarios where Id = @Id',
   getCondPagByID: 'select Descricao from vw_Condicoes_Pagtos where CdCondPagto = @Id',
   getIpiList: 'select * from View_ipi',
-  getItemsById: 'select * from PedidosItens where IdPedido = @Id'
+  getItemsById: 'select * from PedidosItens where IdPedido = @Id',
+  getAddressId: 'select * from View_ENDCLI where A1_COD = @Id',
 }

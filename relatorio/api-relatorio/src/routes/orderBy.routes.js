@@ -8,6 +8,7 @@ import {
   getByCondicao,
   getIpi,
   getByItensForId,
+  getByAddress
 } from '../controllers/orderBy.controller'
 
 const router = Router();
@@ -25,5 +26,7 @@ router.get('/condicao/:id', getByCondicao)
 
 router.get('/productsbypedido/:id', getByItensForId)
 router.get('/ipitem', getIpi)
+
+router.get('/address/:id', getByAddress)
 
 export default router;

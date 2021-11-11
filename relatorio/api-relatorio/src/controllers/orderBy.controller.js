@@ -72,3 +72,13 @@ export const getByItensForId = async (req, res) => {
   // console.log(result);
   res.send(result.recordset.flat(2));
 };
+
+export const getByAddress = async (req, res) => {
+  const {id} = req.params;
+
+  const pool = await getConnection();
+  const result = await pool.request().input('Id', id).query(querys.getAddressId);
+  // console.log(result);
+  res.send(result.recordset.flat(2));
+};
+

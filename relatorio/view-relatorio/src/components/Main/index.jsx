@@ -2,11 +2,12 @@ import React from "react";
 import Table from "../Table";
 import "./main.css";
 
-const Main = ({ order, client, prod }) => {
+const Main = ({ order, client, prod, addre }) => {
 
   // const cond_pagamento = client.oc.f_pagamento.map((prazo, i) => {
   //   return <span key={i}>{prazo}, </span>
   // })
+
 
   return (
     <main className="container" >

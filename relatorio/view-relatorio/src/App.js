@@ -14,15 +14,29 @@ function App() {
   const [order, setOrder] = useState([]);
   const [freteOrder, setFreteOrder] = useState([]);
   const [products, setProducts] = useState([]);
+  const [address, setAddress] = useState([]);
   const [vendedor, setVendedor] = useState('')
   const [condPag, setCondPag] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
   // dados da OC
-  const numOrderCompra = 7634;
+  const numOrderCompra = 8993;
 
   // informações do pedido
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/address/${order.CdCliente}`)
+      .then(response => {
+        setAddress(response.data)
+        setIsLoading(false);
+      })
+      .catch(error => {
+        setError(error.message);
+        setIsLoading(false);
+      })
+  }, [order])
+
   useEffect(() => {
     axios
       .get(`http://localhost:3001/order/${numOrderCompra.toString()}`)
@@ -35,7 +49,7 @@ function App() {
         setError(error.message);
         setIsLoading(false);
       })
-  }, []);
+  },[]);
 
   //itens do pedido  
   useEffect(() => {
@@ -49,12 +63,7 @@ function App() {
         setError(error.message)
         setIsLoading(false);
       })
-  }, []);
-
-//   setFilters({
-//     ...filters, filterByName: { name: value },
-//   });
-// };
+  },[]);
 
    useEffect(() => {
     axios
@@ -98,20 +107,20 @@ function App() {
     })
   },[order.cdCondPagto])
 
-    const freteMap = freteOrder.map((frete, i) => {
-       const freteFilter = frete.CdFrete === order.CdFrete ? <span>{frete.Descricao}</span> : null;
-       const filtered = freteFilter;
+  const freteMap = freteOrder.map((frete, i) => {
+    const freteFilter = frete.CdFrete === order.CdFrete ? <span>{frete.Descricao}</span> : null;
+    const filtered = freteFilter;
   
-       return filtered;
-    })
-  
+    return filtered;
+  })
+
   if (isLoading) {
     return <h1>Buscando dados</h1>
   }
   if (error){
     return <h1>Problemas idenficados: { error }</h1>
   }
-
+  // console.log(address)
   const dataAtual = new Date();
 
   const cliente = {
@@ -128,7 +137,7 @@ function App() {
     nome: order.nmCliente,
     CNPJ: order.nmCliente.replace(/[^0-9]/g,''),
     endereco: {
-      rua: 'Av afonso Vaz de Melo',
+      rua: address.A1_END,
       numero: 51,
       bairro: 'Industrial',
       cidade: 'Contagem',
@@ -139,10 +148,11 @@ function App() {
     // data atual
     data: dataAtual.toLocaleDateString(),
   };
+
   return (
       <main>
         <Header order={order} client={cliente} />
-        <Main order={order} client={cliente} prod={products} />
+        <Main order={order} client={cliente} prod={products} addre={address} />
         <Tfooter produtos={products} vlr_total={order.totalPedido} />
       </main>
   );
