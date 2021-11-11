@@ -29,14 +29,14 @@ const valorTotal = ({ produtos, vlr_total }) => {
   // const totalyWithIpi = valoresIpi.reduce((totaly, value) => totaly + value, 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
   return(
-    <div className="container">
+    <div className="table-responsive">
       <tbody className="tbody">
         <tr className="row">
-          <td className="col-3 col-md-auto">Subtotal:</td>
+          <td className="col-5 ">Subtotal:</td>
           <td className="col align-items-end">{ valorTotal }</td>
         </tr>
         <tr className="row">
-          <td className="col-3 col-md-auto">Total</td>
+          <td className="col-3  align-items-end">Total</td>
           <td className="col align-items-end"><strong>{ vlr_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }</strong></td>
         </tr>
       </tbody>

@@ -1,8 +1,9 @@
 
 
-/*tbody {
-  border: 1px solid black;
-}*/
+tbody {
+  width: auto;
+  margin: auto;
+}
 
 tbody td {
   border-right: 1px solid black;
