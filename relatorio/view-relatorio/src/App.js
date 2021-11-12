@@ -135,9 +135,7 @@ function App() {
   if(status) {
     return <h3>Carregando</h3>
   }
-
-
-
+  
     const cliente = {
       oc: {
         id: order.Id,
