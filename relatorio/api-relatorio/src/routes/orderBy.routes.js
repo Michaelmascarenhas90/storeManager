@@ -8,6 +8,7 @@ import {
   getByVendedores,
   getByCondicao,
   getIpi,
+  gitIpiAll,
   getByItensForId,
   getByAddress
 } from '../controllers/orderBy.controller'
@@ -27,7 +28,8 @@ router.get('/vendedor/:id', getByVendedores)
 router.get('/condicao/:id', getByCondicao)
 
 router.get('/productsbypedido/:id', getByItensForId)
-router.get('/ipitem', getIpi)
+router.get('/ipitem/:id', getIpi)
+router.get('/ipitem', gitIpiAll)
 
 router.get('/address/:id', getByAddress)
 

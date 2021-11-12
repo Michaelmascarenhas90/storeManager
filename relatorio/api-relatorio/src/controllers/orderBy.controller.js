@@ -61,16 +61,25 @@ export const getByCondicao = async (req, res) => {
   res.send(result.recordset[0]);
 };
 
-export const getIpi = async (_req, res) => {
+export const getIpi = async (req, res) => {
+  const {id} = req.params;
+
+  const pool = await getConnection();
+  const result = await pool.request().input('Id', id).query(querys.getIpiList);
+  // console.log(result);
+  res.send(result.recordset[0]);
+}
+
+export const gitIpiAll = async (_req, res) => {
   try {
     const pool = await getConnection();
-    const result = await pool.request().query(querys.getIpiList);
+    const result = await pool.request().query(querys.getIpiForAll);
     // console.log(result);
     res.json(result.recordset);
   } catch (error) {
     res.status(500);
     res.send(error.message);
-  } 
+  }
 }
 
 export const getByItensForId = async (req, res) => {

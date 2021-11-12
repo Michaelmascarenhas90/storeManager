@@ -2,7 +2,7 @@ import React from "react";
 import Table from "../Table";
 import "./main.css";
 
-const Main = ({ order, client, prod, addre }) => {
+const Main = ({ order, client, prod, addre, ipi }) => {
 
   // const cond_pagamento = client.oc.f_pagamento.map((prazo, i) => {
   //   return <span key={i}>{prazo}, </span>
@@ -12,7 +12,6 @@ const Main = ({ order, client, prod, addre }) => {
     <main className="container" >
       <div className="row row-infor">
         <div className="col-7"><span className='info-user'><strong>Nome:</strong> { order.nmCliente }</span></div>
-        {/* {console.log(addre.A1_END)} */}
         <div className="col"><span className='info-user'><strong>CPF/CNPJ:</strong> { order.nmCliente.replace(/[^0-9]/g,'') }</span></div>
       </div>
       <div className="row row-infor">
@@ -29,7 +28,7 @@ const Main = ({ order, client, prod, addre }) => {
       <div className="row row-infor">
         <div className="col"><span className='info-user'><strong>F.Pagamento:</strong> { client.oc.f_pagamento }</span></div>
       </div>
-      <div className="row row-infor"><Table prod={ prod } obs={order.Observacao} /></div>
+      <div className="row row-infor"><Table prod={ prod } ipi={ ipi } obs={order.Observacao} /></div>
     </main>
   );
 }

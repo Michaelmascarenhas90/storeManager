@@ -15,14 +15,31 @@ function App() {
   const [freteOrder, setFreteOrder] = useState([]);
   const [products, setProducts] = useState([]);
   const [address, setAddress] = useState({});
-  const [vendedor, setVendedor] = useState('')
-  const [condPag, setCondPag] = useState('');
+  const [vendedor, setVendedor] = useState('');
+  const [ipi, setIpi] = useState([]);
+  const [condPag, setCondPag] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [status, setStatus] = useState(true)
   const [error, setError] = useState('');
 
   // dados da OC
-  const numOrderCompra = 7634;
+  const numOrderCompra = 7744;
 
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/ipitem')
+      .then(response => {
+        setIpi(response.data)
+        setIsLoading(false);
+        setStatus(false)
+      }).catch((error) =>  {
+        setError(error.message)
+        setIsLoading(false)
+        setStatus(false)
+      }
+      )
+      
+  }, [])
   // informações do pedido
   useEffect(() => {
     axios
@@ -30,14 +47,13 @@ function App() {
       .then(response => response.data)
       .then(responseData => {
         setOrder(responseData)
-        // console.log(response.data)
         setIsLoading(false);
       })
       .catch(error => {
         setError(error.message);
         setIsLoading(false);
       })
-  },[]);
+  },[ipi]);
 
   // dados do endereço
   useEffect(() => {
@@ -45,7 +61,6 @@ function App() {
       .get(`http://localhost:3001/address/${order.CdCliente}`)
       .then(response => response.data)
       .then(responseData => {
-        // console.log(responseData[0])
         setAddress(responseData)
         setIsLoading(false)
       })
@@ -53,8 +68,7 @@ function App() {
         setError(error.message);
         setIsLoading(false);
       })
-  }, [order.CdCliente]);
-   // console.log(address[0])
+  }, [order.CdCliente, ipi]);
 
   //itens do pedido  
   useEffect(() => {
@@ -68,22 +82,20 @@ function App() {
         setError(error.message)
         setIsLoading(false);
       })
-  },[]);
+  },[ipi]);
 
    useEffect(() => {
     axios
       .get(`http://localhost:3001/frete/${order.CdFrete}`)
       .then(response => {
-        // console.log(response)
         setFreteOrder(response.data.Descricao);
-        // console.log(response.data.Descricao)
         setIsLoading(false);
       })
       .catch(error => {
         setError(error.message);
         setIsLoading(false);
       })
-  }, [order.CdFrete]);
+  }, [order.CdFrete, ipi]);
 
   useEffect(() => {  
     axios.get(`http://localhost:3001/vendedor/${order.idVendedor}`)
@@ -96,14 +108,13 @@ function App() {
       setIsLoading(false)
 
     })
-  },[order.idVendedor]);
+  },[order.idVendedor, ipi]);
 
   useEffect(() => {  
     axios.get(`http://localhost:3001/condicao/${order.cdCondPagto}`)
      .then(response => {
       setCondPag(response.data);
 
-      // console.log(response.data.Descricao)
       setIsLoading(false)
     })
     .catch(error => {
@@ -111,22 +122,22 @@ function App() {
       setIsLoading(false)
 
     })
-  }, [order.cdCondPagto]);
+  }, [order.cdCondPagto, ipi]);
 
-  // const freteMap = freteOrder.map((frete, i) => {
-  //   const freteFilter = frete.CdFrete === order.CdFrete ? <span key={i}>{frete.Descricao}</span> : null;
-  //   const filtered = freteFilter;
-  
-  //   return filtered;
-  // })
+
+
   if (isLoading) {
     return <h1>Buscando dados</h1>
   }
   if (error){
     return <h1>Problemas idenficados: { error }</h1>
   }
-  console.log(address)
- 
+  if(status) {
+    return <h3>Carregando</h3>
+  }
+
+
+
     const cliente = {
       oc: {
         id: order.Id,
@@ -150,6 +161,7 @@ function App() {
         />
         <Main 
           order={order}
+          ipi={ipi}
           client={cliente}
           prod={products}
           addre={address}

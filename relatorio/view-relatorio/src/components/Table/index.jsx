@@ -6,7 +6,7 @@ import Tbody from "./Tbody";
 
 import "./table.css";
 
-const Table = ({ prod, obs }) => {
+const Table = ({ prod, obs, ipi }) => {
     // const observações = produtos.map((produto) => <span className="row">{produto.obs}</span>)
   return (
     <div className="table-responsive">
@@ -15,7 +15,7 @@ const Table = ({ prod, obs }) => {
       </section>
       <table className="table" width="100%">
           {/* <Thead /> */}
-        <Tbody prod={ prod } />
+        <Tbody prod={ prod } ipi={ipi}/>
           {/* <Tfooter produtos={ produtos } /> */}
       </table>
     </div>
