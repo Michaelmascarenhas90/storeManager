@@ -1,28 +1,14 @@
 import React from "react";
+import { alignPropType } from "react-bootstrap/esm/types";
 import "./tbody.css";
 
 const Tbody = ({ prod, ipi }) => {
 
-  // const total = produtos.reduce((total, valor) => { return total + valor, 0 });
-  // console.log(ipi)
-  // .replace(/( )+/g, ' '); expressão para remover espaçõs duplicados
+
+  // const mapIpi = ipi.map((itemIpi) => itemIpi.B1_COD)
+  // console.log(mapIpi)
+
   
-  // const ipiMap = ipi.map(ipiItem => {
-  //   return (
-  //     {
-  //       cod_produto: ipiItem.B1_COD.replace(/( )+/g, ' '),
-  //       alq_ipi: ipiItem.B1_IPI
-  //     }
-  //   )
-  // })
-
-  // console.log(ipiMap.cod_produto)
-
-  const ipiInfinit = (ipi.flat(Infinity));
-  const ipiMap = ipiInfinit.map((itemIpi) => itemIpi.B1_COD.replace(/( )+/g, ''))
-  const ipiAlq = ipiInfinit.map((ipiAl) => ipiAl.B1_IPI)
-  // console.log(ipiAlq, ipiMap)
-
   return (
     <div>
       <thead>
@@ -40,10 +26,13 @@ const Tbody = ({ prod, ipi }) => {
             // .toFixed(2).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
             const vlr_unit = (produto.Preco)//.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
             const qtd_total = produto.QtdeSag + produto.QtdeSac;
-            const ipiValue = (produto.cdProduto === ipiMap) ? ipiAlq : null
-            console.log(ipiValue)
+            // const ipiMap = ipi.map((objIpi) => {
+            //   if (produto.cdProduto === objIpi.B1_COD) {
+            //     return objIpi.B1_IPI
+            //   }
+            // })
             const vlr_total = (vlr_unit * qtd_total)//.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-            const imposto = '5'
+            const imposto = (vlr_total * 5 ) / 100
 
             return (
               <div>

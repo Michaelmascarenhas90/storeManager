@@ -16,7 +16,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [address, setAddress] = useState({});
   const [vendedor, setVendedor] = useState('');
-  const [ipi, setIpi] = useState([]);
+  const [ipi, setIpi] = useState({});
   const [condPag, setCondPag] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [status, setStatus] = useState(true)
@@ -30,6 +30,7 @@ function App() {
       .get('http://localhost:3001/ipitem')
       .then(response => {
         setIpi(response.data)
+        // console.log(response.data)
         setIsLoading(false);
         setStatus(false)
       }).catch((error) =>  {
@@ -38,8 +39,8 @@ function App() {
         setStatus(false)
       }
       )
-      
   }, [])
+
   // informações do pedido
   useEffect(() => {
     axios
@@ -135,6 +136,8 @@ function App() {
   if(status) {
     return <h3>Carregando</h3>
   }
+  
+  // console.log(ipi[0].B1_COD.replace(/( )+/g, ''))
   
     const cliente = {
       oc: {
