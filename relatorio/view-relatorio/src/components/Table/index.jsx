@@ -11,7 +11,7 @@ const Table = ({ prod, obs }) => {
   return (
     <div className="table-responsive">
       <section className="row">
-        <span>{obs}</span>
+        <p>{obs}</p>
       </section>
       <table className="table" width="100%">
           {/* <Thead /> */}

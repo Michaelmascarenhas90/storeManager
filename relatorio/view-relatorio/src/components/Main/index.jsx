@@ -16,10 +16,10 @@ const Main = ({ order, client, prod, addre }) => {
         <div className="col"><span className='info-user'><strong>CPF/CNPJ:</strong> { order.nmCliente.replace(/[^0-9]/g,'') }</span></div>
       </div>
       <div className="row row-infor">
-        <div className="col-"><span className='info-user'><strong>Endereço:</strong> { client.endereco.rua }, {client.endereco.numero}</span></div>
-        <div className="col"><span className='info-user'><strong>Bairro:</strong> { client.endereco.bairro }</span></div>
-        <div className="col"><span className='info-user'><strong>Cidade:</strong> { client.endereco.cidade }</span></div>
-        <div className="col"><span className='info-user'><strong>Estado:</strong> { client.endereco.estado }</span></div>
+        <div className="col-"><span className='info-user'><strong>Endereço:</strong> { addre.A1_END }</span></div>
+        <div className="col"><span className='info-user'><strong>Bairro:</strong> { addre.A1_BAIRRO }</span></div>
+        <div className="col"><span className='info-user'><strong>Cidade:</strong> { addre.A1_MUN }</span></div>
+        <div className="col"><span className='info-user'><strong>Estado:</strong> { addre.A1_EST }</span></div>
       </div>
       <div className="row">
         <div className="col-4"><span className='info-user'><strong>Representante:</strong> { client.representante }</span></div>

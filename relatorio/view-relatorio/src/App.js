@@ -14,14 +14,14 @@ function App() {
   const [order, setOrder] = useState([]);
   const [freteOrder, setFreteOrder] = useState([]);
   const [products, setProducts] = useState([]);
-  const [address, setAddress] = useState([]);
+  const [address, setAddress] = useState({});
   const [vendedor, setVendedor] = useState('')
   const [condPag, setCondPag] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
   // dados da OC
-  const numOrderCompra = 899;
+  const numOrderCompra = 7634;
 
   // informações do pedido
   useEffect(() => {
@@ -119,34 +119,23 @@ function App() {
   
   //   return filtered;
   // })
-
   if (isLoading) {
     return <h1>Buscando dados</h1>
   }
   if (error){
     return <h1>Problemas idenficados: { error }</h1>
   }
-
+  console.log(address)
+ 
     const cliente = {
       oc: {
         id: order.Id,
         frete: freteOrder,
         vlr_total: order.totalPedido,
         f_pagamento: condPag.Descricao,
-        produtos: [
-          {item: 'Testeira  c/ iluminação farmacia cb300 branco azulado', qtd: 6, vlr_unit: 700, alq_imposto: 7, obs: "Observação 1 verificando se esta renderizando corretamente" },
-          {item: 'Armação de metal medida 30x40, aplicado em porta palete', qtd: 2, vlr_unit: 130, alq_imposto: 7, obs: "Observação 2 verficando se esta renderizando corretamente" },
-        ],
       },
       nome: order.nmCliente,
       CNPJ: order.nmCliente.replace(/[^0-9]/g,''),
-      endereco: {
-        rua: "teste",
-        numero: 51,
-        bairro: 'Industrial',
-        cidade: 'Contagem',
-        estado: 'MG',
-      },
       representante: order.CdRepresentante,
       vendedor: vendedor,
       // data atual
@@ -163,7 +152,7 @@ function App() {
           order={order}
           client={cliente}
           prod={products}
-          addre={address[0]}
+          addre={address}
         />
         <Tfooter
           produtos={products}

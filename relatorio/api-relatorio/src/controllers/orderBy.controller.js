@@ -88,6 +88,6 @@ export const getByAddress = async (req, res) => {
   const pool = await getConnection();
   const result = await pool.request().input('Id', id).query(querys.getAddressId);
   // console.log(result);
-  res.send(result.recordset.flat(2));
+  res.send(result.recordset[0]);
 };
 
