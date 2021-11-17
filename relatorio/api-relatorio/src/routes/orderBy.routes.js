@@ -7,8 +7,8 @@ import {
   getFreteById,
   getByVendedores,
   getByCondicao,
-  getIpi,
-  gitIpiAll,
+  // getIpi,
+  // gitIpiAll,
   getByItensForId,
   getByAddress
 } from '../controllers/orderBy.controller'
@@ -22,14 +22,12 @@ router.get('/order/:id', getOrderById);
 router.get('/frete', getByFrete);
 router.get('/frete/:id', getFreteById)
 
-// router.get('/teste/:id', getByTest);
-
 router.get('/vendedor/:id', getByVendedores)
 router.get('/condicao/:id', getByCondicao)
 
 router.get('/productsbypedido/:id', getByItensForId)
-router.get('/ipitem/:id', getIpi)
-router.get('/ipitem', gitIpiAll)
+// router.get('/ipitem/:id', getIpi)
+// // router.get('/ipitem', gitIpiAll)
 
 router.get('/address/:id', getByAddress)
 

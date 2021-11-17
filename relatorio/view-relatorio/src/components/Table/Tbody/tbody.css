@@ -1,13 +1,12 @@
-
-
 tbody {
   width: auto;
   margin: auto;
 }
 
 tbody td {
-  border-right: 1px solid black;
-  font-size: 11px;
+  /*border-right: 1px solid black;*/
+  font-size: 0.6rem;
+  padding-left: 0.3rem;
 }
 
 thead {
@@ -15,11 +14,25 @@ thead {
 }
 
 thead th {
-  border-right: 0.4px solid black;
+  /*border-right: 0.4px solid black;*/
   font-size: small;
+}
+
+.border-t {
+  border-right: 0.4px solid black;
+  padding-right: calc(var(--bs-gutter-x) * .1);
+  padding-left: calc(var(--bs-gutter-x) * .4);
 }
 
 .head {
   text-align: center;
-  font-size: small;
+  font-size: 0.6rem;
+}
+
+#line-padding {
+  padding: 0.2rem
+}
+
+.opcionais {
+  font-size: 11px;
 }

@@ -16,30 +16,12 @@ function App() {
   const [products, setProducts] = useState([]);
   const [address, setAddress] = useState({});
   const [vendedor, setVendedor] = useState('');
-  const [ipi, setIpi] = useState({});
   const [condPag, setCondPag] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-  const [status, setStatus] = useState(true)
   const [error, setError] = useState('');
 
   // dados da OC
-  const numOrderCompra = 7744;
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:3001/ipitem')
-      .then(response => {
-        setIpi(response.data)
-        // console.log(response.data)
-        setIsLoading(false);
-        setStatus(false)
-      }).catch((error) =>  {
-        setError(error.message)
-        setIsLoading(false)
-        setStatus(false)
-      }
-      )
-  }, [])
+  const numOrderCompra = 8993;
 
   // informações do pedido
   useEffect(() => {
@@ -54,7 +36,7 @@ function App() {
         setError(error.message);
         setIsLoading(false);
       })
-  },[ipi]);
+  },[]);
 
   // dados do endereço
   useEffect(() => {
@@ -69,7 +51,7 @@ function App() {
         setError(error.message);
         setIsLoading(false);
       })
-  }, [order.CdCliente, ipi]);
+  }, [order.CdCliente]);
 
   //itens do pedido  
   useEffect(() => {
@@ -83,7 +65,7 @@ function App() {
         setError(error.message)
         setIsLoading(false);
       })
-  },[ipi]);
+  },[]);
 
    useEffect(() => {
     axios
@@ -96,7 +78,7 @@ function App() {
         setError(error.message);
         setIsLoading(false);
       })
-  }, [order.CdFrete, ipi]);
+  }, [order.CdFrete]);
 
   useEffect(() => {  
     axios.get(`http://localhost:3001/vendedor/${order.idVendedor}`)
@@ -109,7 +91,7 @@ function App() {
       setIsLoading(false)
 
     })
-  },[order.idVendedor, ipi]);
+  },[order.idVendedor]);
 
   useEffect(() => {  
     axios.get(`http://localhost:3001/condicao/${order.cdCondPagto}`)
@@ -123,7 +105,7 @@ function App() {
       setIsLoading(false)
 
     })
-  }, [order.cdCondPagto, ipi]);
+  }, [order.cdCondPagto]);
 
 
 
@@ -132,9 +114,6 @@ function App() {
   }
   if (error){
     return <h1>Problemas idenficados: { error }</h1>
-  }
-  if(status) {
-    return <h3>Carregando</h3>
   }
   
   // console.log(ipi[0].B1_COD.replace(/( )+/g, ''))
@@ -162,7 +141,6 @@ function App() {
         />
         <Main 
           order={order}
-          ipi={ipi}
           client={cliente}
           prod={products}
           addre={address}

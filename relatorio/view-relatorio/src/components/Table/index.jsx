@@ -1,4 +1,5 @@
 import React from "react";
+import Table from 'react-bootstrap/Table'
 
 // import Thead from "./Thead";
 import Tbody from "./Tbody";
@@ -6,20 +7,21 @@ import Tbody from "./Tbody";
 
 import "./table.css";
 
-const Table = ({ prod, obs, ipi }) => {
+const TableComponent = ({ prod, obs, ipi }) => {
     // const observações = produtos.map((produto) => <span className="row">{produto.obs}</span>)
+    const renderObs = <section className="row"><p className="head"><strong>Observações: </strong><span>{obs}</span></p>
+  </section>
   return (
     <div className="table-responsive">
-      <section className="row">
-        <p>{obs}</p>
-      </section>
-      <table className="table" width="100%">
+      {obs ? renderObs : null}
+
+      <Table className="table" width="100%">
           {/* <Thead /> */}
         <Tbody prod={ prod } ipi={ipi}/>
           {/* <Tfooter produtos={ produtos } /> */}
-      </table>
+      </Table>
     </div>
   );
 }
 
-export default Table;
+export default TableComponent;

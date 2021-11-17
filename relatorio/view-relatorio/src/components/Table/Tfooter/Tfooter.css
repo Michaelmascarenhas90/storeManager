@@ -6,3 +6,7 @@ tbody th {
   border-right: 1px solid black;
   padding-right: 1px;
 }
+
+.vlrTotal {
+  font-size: medium;
+}

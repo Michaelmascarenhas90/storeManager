@@ -1,11 +1,13 @@
 .row-infor {
   border-bottom: 0.2rem solid #bdbebd;
+}
 
+.info-user {
+  font-size: 0.7rem;
 }
 
 .row {
   padding: 1rem;
-  font-size: 0.9rem;
 }
 
 .col-7 {
@@ -14,4 +16,12 @@
 
 .col-sm {
   text-align: center;
+}
+
+#table-pading {
+  padding: 0.3rem;
+}
+
+.row-seller {
+  padding: 0.3rem;
 }
